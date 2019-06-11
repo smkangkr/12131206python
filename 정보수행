@@ -1,0 +1,24 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+f = input()
+g = lambda x : eval(f)
+n=int(input())
+p=float(input())
+q=float(input())
+r=float(input())
+
+a=p
+b=p+q
+
+X = np.arange(a, b, q/n) #직사각형 그래프
+Y = list(map(lambda x : g(x)*r/q, X))
+
+x = np.arange(a, b, 0.1) #g(x) 그래프
+y = list(map(lambda x : g(x)*r/q, x))
+
+plt.bar(X, Y, width =q/n ,alpha = 0.5, edgecolor = 'r', align = 'edge')
+plt.plot(x,y)
+plt.text(a, g(a)*r/q, str(g(a)*r/q))
+plt.text(b, g(b)*r/q, str(g(b)*r/q))
+plt.show()
