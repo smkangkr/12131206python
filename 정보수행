@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
-f = input()
+%matplotlib inline
+f = input("함수식을 입력해주세요")
 g = lambda x : eval(f)
-n=int(input())
-p=float(input())
-q=float(input())
-r=float(input())
+n=int(input('직사각형의 갯수를 입력해주세요'))
+p=float(input('구간의 왼쪽 끝값을 입력해주세요'))
+q=float(input('구간의 오른쪽 끝값을 입력해주세요'))
+r=float(input('r을 입력해주세요'))
 
 a=p
 b=p+q
