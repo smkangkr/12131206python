@@ -1,24 +1,30 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-f = input()
+f = input("함수를 입력하세요: ")
 g = lambda x : eval(f)
-n=int(input())
-p=float(input())
-q=float(input())
-r=float(input())
+n=int(input("직사각형의 개수를 입력하세요: "))
+p=float(input("아래끝을 입력하세요: "))
+q=float(input("구간 길이를 입력하세요: "))
 
 a=p
 b=p+q
 
 X = np.arange(a, b, q/n) #직사각형 그래프
-Y = list(map(lambda x : g(x)*r/q, X))
+Y = list(map(lambda x : g(x), X))
 
 x = np.arange(a, b, 0.1) #g(x) 그래프
-y = list(map(lambda x : g(x)*r/q, x))
+y = list(map(lambda x : g(x), x))
 
 plt.bar(X, Y, width =q/n ,alpha = 0.5, edgecolor = 'r', align = 'edge')
 plt.plot(x,y)
-plt.text(a, g(a)*r/q, str(g(a)*r/q))
-plt.text(b, g(b)*r/q, str(g(b)*r/q))
+plt.text(a, g(a), str(g(a)))
+plt.text(b, g(b), str(g(b)))
 plt.show()
+
+s_1 = float(q/n * sum(Y))
+s_2 = float(0.1 * sum(y))
+
+print("부호를 고려한 직사각형의 넓이의 합은", round(s_1,3) , "입니다")
+print("부호를 고려한 직사각형의 넓이의 합은", round(s_2,3) , "입니다")
+print("부호를 고려한 직사각형의 넓이의 합과 정적분 값의 오차는",round(100*(1 - s_1/s_2),3),"% 입니다")
