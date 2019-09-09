@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from sympy import Integral, Symbol
 
 f = input()
 g = lambda x : eval(f)
@@ -22,3 +23,9 @@ plt.plot(x,y)
 plt.text(a, g(a)*r/q, str(g(a)*r/q))
 plt.text(b, g(b)*r/q, str(g(b)*r/q))
 plt.show()
+real = Integral(f, (f, p, p+q)).doit()
+c = np.arange(a, b, q/n) 
+d = list(map(lambda c : g(c)*r/q, c))
+tr = sum(d)
+print(tr-real,"이 실제적분값과 급수를 이용한 근사 적분값의 차입니다.")
+print("실제 적분값은",real,"이며, 급수를 이용한 근사 적분값은",tr,"입니다.")
