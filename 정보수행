@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-f = input()
-g = lambda x : eval(f)
-n=int(input())
-p=float(input())
-q=float(input())
+f = input() # 함수 입력
+g = lambda x : eval(f) #변환
+n=int(input("나눌 횟수: ")) # 그래프를 나눌 횟수
+p=float(input("[a,b] a?: ")) #정적분
+q=float(input("[a,b] b-a?: ")) #정적분
 r=float(input())
 
 a=p
@@ -17,7 +17,7 @@ Y = list(map(lambda x : g(x)*r/q, X))
 x = np.arange(a, b, 0.1) #g(x) 그래프
 y = list(map(lambda x : g(x)*r/q, x))
 
-plt.bar(X, Y, width =q/n ,alpha = 0.5, edgecolor = 'r', align = 'edge')
+plt.bar(X, Y, width =q/n ,alpha = 0.5, edgecolor = 'r', align = 'edge') #막대 그리기
 plt.plot(x,y)
 plt.text(a, g(a)*r/q, str(g(a)*r/q))
 plt.text(b, g(b)*r/q, str(g(b)*r/q))
