@@ -1,12 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from sympy import Integral, Symbol
 
-f = input()
+t = Symbol('t') 
+f = input('x에 관한 함수를 입력하세요')
+ft = input('t에 관한 함수를 입력하세요')
 g = lambda x : eval(f)
-n=int(input())
-p=float(input())
-q=float(input())
-r=float(input())
+n=int(input('등분할 구간의 개수를 입력하세요'))
+p=float(input('구간의 왼쪽 끝을 입력하세요'))
+q=float(input('구간의 길이를 입력하세요'))
 
 a=p
 b=p+q
@@ -22,3 +24,41 @@ plt.plot(x,y)
 plt.text(a, g(a)*r/q, str(g(a)*r/q))
 plt.text(b, g(b)*r/q, str(g(b)*r/q))
 plt.show()
+
+import matplotlib.pyplot as plt
+import numpy as np
+  
+
+t = Symbol('t') 
+f = input('x에 관한 함수를 입력하세요') 
+ft = input('t에 관한 함수를 입력하세요')
+g = lambda x : eval(f)
+n=int(input('등분할 구간의 개수를 입력하세요'))
+p=float(input('구간의 왼쪽 끝을 입력하세요'))
+q=float(input('구간의 길이를 입력하세요'))
+
+a=p
+b=p+q
+
+X = np.arange(a, b, q/n) #직사각형 그래프
+Y = list(map(lambda x : g(x), X))
+
+x = np.arange(a, b, 0.1) #g(x) 그래프
+y = list(map(lambda x : g(x), x))
+
+plt.bar(X, Y, width =q/n ,alpha = 0.5, edgecolor = 'r', align = 'edge')
+plt.plot(x,y)
+plt.text(a, g(a), str(g(a)))
+plt.text(b, g(b), str(g(b)))
+plt.show()
+
+def RiemS(q,n) :
+    sum = 0
+    for i in Y :
+        sum = sum + i
+    return float(sum)*q/n
+print(RiemS(q,n))
+
+S = Integral(ft, (t, a, b)).doit()
+print(S)
+print(S-RiemS(q,n))
